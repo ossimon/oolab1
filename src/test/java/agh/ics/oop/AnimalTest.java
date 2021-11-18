@@ -12,6 +12,7 @@ public class AnimalTest {
         animal.move(MoveDirection.FORWARD);
         assertEquals(animal.toString(), "Zachód (1, 3)");
     }
+    @Test
     public void boundaryTest(){
         Animal animal = new Animal();
         for(int i = 0; i < 4; i++){ animal.move(MoveDirection.FORWARD);}
