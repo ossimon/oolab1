@@ -40,6 +40,6 @@ public class RectangularMap implements IWorldMap{
     }
     public String toString() {
         MapVisualizer visualizer = new MapVisualizer(this);
-        return visualizer.draw(leftDownBoundary, rightUpBoundary);
+        return visualizer.draw(leftDownBoundary, rightUpBoundary);me
     }
 }
