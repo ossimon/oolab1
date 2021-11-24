@@ -81,7 +81,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
+  <component name="RunManager" selected="Gradle.RectangularMapTest">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/corretto-16.0.2" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -199,8 +199,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.GrassFieldTest" />
         <item itemvalue="Gradle.RectangularMapTest" />
+        <item itemvalue="Gradle.GrassFieldTest" />
         <item itemvalue="Gradle.RectangularMapTest.canMoveToAndPlaceTest" />
         <item itemvalue="Gradle.RectangularMapTest.objectAt" />
         <item itemvalue="Gradle.RectangularMapTest.isOccupiedTest" />
