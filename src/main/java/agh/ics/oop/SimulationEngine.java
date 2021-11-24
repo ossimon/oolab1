@@ -24,6 +24,7 @@ public class SimulationEngine implements IEngine {
         for(int i = 0; i < directions.length; i++){
             Animal animal = animals.get(i % n);
             animal.move(directions[i]);
+            System.out.println(map);
         }
     }
 }
