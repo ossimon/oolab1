@@ -4,14 +4,15 @@ import java.util.*;
 
 abstract class AbstractWorldMap implements IWorldMap {
 
-    protected List<Animal> animals = new ArrayList<>();
+    protected Map<Vector2d, Animal> animals = new HashMap<>();
 
     public boolean canMoveTo (Vector2d position) {
         return !(this.objectAt(position) instanceof Animal);
     }
     public boolean place (Animal animal) {
-        if (canMoveTo(animal.getPosition())) {
-            animals.add(animal);
+        Vector2d pos = animal.getPosition();
+        if (canMoveTo(pos)) {
+            animals.put(pos, animal);
             return true;
         }
         return false;

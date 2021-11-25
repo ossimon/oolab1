@@ -1,14 +1,12 @@
 package agh.ics.oop;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static java.lang.Math.sqrt;
 
 public class GrassField extends AbstractWorldMap {
 
-    private final List<Grass> grasses = new ArrayList<>();
+    private final Map<Vector2d, Grass> grass = new HashMap<>();
 
     public GrassField (int amount) {
         int boundary = (int) sqrt(amount * 10) + 1;
