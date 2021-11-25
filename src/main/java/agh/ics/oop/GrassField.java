@@ -7,16 +7,17 @@ import static java.lang.Math.sqrt;
 public class GrassField extends AbstractWorldMap {
 
     private final Map<Vector2d, Grass> grass = new HashMap<>();
+    private final int boundary;
 
     public GrassField (int amount) {
-        int boundary = (int) sqrt(amount * 10) + 1;
+        boundary = (int) sqrt(amount * 10) + 1;
         Random rng = new Random();
         Vector2d pos;
         for (int i = 0; i < amount; i++) {
             do {
                 pos = new Vector2d(rng.nextInt(boundary + 1), rng.nextInt(boundary + 1));
             } while (!this.canMoveTo(pos));
-            grasses.add(new Grass(pos));
+            grass.put(pos, new Grass(pos));
         }
     }
 
@@ -29,24 +30,20 @@ public class GrassField extends AbstractWorldMap {
             return object;
         }
         else {
-            Vector2d grassPos;
-            for (Grass grass : grasses) {
-                grassPos = grass.getPosition();
-                if (grassPos.equals(position)) {
-                    return grass;
-                }
-            }
+            return grass.get(position);
         }
-        return null;
     }
 
     @Override
     protected Vector2d[] findBoundaries() {
-        Vector2d animalPos = animals.get(0).getPosition();
-        Vector2d start = new Vector2d(animalPos.x, animalPos.y);
-        Vector2d end = new Vector2d(animalPos.x, animalPos.y);
+//        Vector2d animalPos = animals.values().get(0).getPosition();
+//        Vector2d start = new Vector2d(animalPos.x, animalPos.y);
+//        Vector2d end = new Vector2d(animalPos.x, animalPos.y);
+        Vector2d start = new Vector2d(0, 0);
+        Vector2d end = new Vector2d(boundary, boundary);
+        Vector2d animalPos;
 
-        for (Animal animal: animals) {
+        for (Animal animal: animals.values()) {
             animalPos = animal.getPosition();
             start = animalPos.lowerLeft(start);
             end = animalPos.upperRight(end);
