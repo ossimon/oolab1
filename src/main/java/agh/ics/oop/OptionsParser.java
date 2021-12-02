@@ -14,6 +14,7 @@ public class OptionsParser {
                 case "l", "left" -> MoveDirection.LEFT;
                 case "r", "right" -> MoveDirection.RIGHT;
                 default -> null;
+                //teścik
             };
         }
 

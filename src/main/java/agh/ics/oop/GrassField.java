@@ -36,9 +36,6 @@ public class GrassField extends AbstractWorldMap {
 
     @Override
     protected Vector2d[] findBoundaries() {
-//        Vector2d animalPos = animals.values().get(0).getPosition();
-//        Vector2d start = new Vector2d(animalPos.x, animalPos.y);
-//        Vector2d end = new Vector2d(animalPos.x, animalPos.y);
         Vector2d start = new Vector2d(0, 0);
         Vector2d end = new Vector2d(boundary, boundary);
         Vector2d animalPos;

@@ -62,7 +62,7 @@ public class Animal {
             default -> throw new IllegalStateException("Unexpected value: " + direction);
         }
     }
-    public void positionChanged(Vector2d oldPosition, Vector2d newPosition){
+    private void positionChanged(Vector2d oldPosition, Vector2d newPosition){
         for (IPositionChangeObserver observer: observers) {
             observer.positionChanged(oldPosition, newPosition);
         }
