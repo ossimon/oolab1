@@ -80,16 +80,19 @@ public class App extends Application implements IPositionChangeObserver{
         height = topBoundary - bottomBoundary + 2;
         width = rightBoundary - leftBoundary + 2;
 
+        for (int i = bottomBoundary; i <= topBoundary; i++) {
+            label = new Label(Integer.toString(i));
+            grid.add(label, 0, topBoundary + 1 - i);
+            GridPane.setHalignment(label, HPos.CENTER);
+        }
+        for (int j = leftBoundary; j <= rightBoundary; j++) {
+            label = new Label(Integer.toString(j));
+            grid.add(label, 1 + j - leftBoundary, 0);
+            GridPane.setHalignment(label, HPos.CENTER);
+        }
 
         for (int i = bottomBoundary; i <= topBoundary; i++) {
             for (int j = leftBoundary; j <= rightBoundary; j++) {
-                label = new Label(Integer.toString(i));
-                grid.add(label, 0, topBoundary + 1 - i);
-                GridPane.setHalignment(label, HPos.CENTER);
-
-                label = new Label(Integer.toString(j));
-                grid.add(label, 1 + j - leftBoundary, 0);
-                GridPane.setHalignment(label, HPos.CENTER);
 
                 IMapElement mapElement = (IMapElement) map.objectAt(new Vector2d(j, i));
 
