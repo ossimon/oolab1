@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class OptionsParserTest {
     @Test
     public void parseTest(){
-        String[] dirList1 = {"f", "forward", "b", "backward", "l", "left", "r", "right", "try"};
+        String[] dirList1 = {"f", "forward", "b", "backward", "l", "left", "r", "right"};
         MoveDirection[] dirList = OptionsParser.parse(dirList1);
         assertEquals(dirList[0], MoveDirection.FORWARD);
         assertEquals(dirList[1], MoveDirection.FORWARD);
@@ -16,6 +16,12 @@ public class OptionsParserTest {
         assertEquals(dirList[5], MoveDirection.LEFT);
         assertEquals(dirList[6], MoveDirection.RIGHT);
         assertEquals(dirList[7], MoveDirection.RIGHT);
-        assertEquals(dirList[8], null);
+
+        try {
+            String[] dir = {"xd"};
+            OptionsParser.parse(dir);
+        } catch (IllegalArgumentException ex) {
+            assertEquals("xd is not a legal move specification", ex.getMessage());
+        }
     }
 }

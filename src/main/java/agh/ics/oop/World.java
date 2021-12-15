@@ -1,7 +1,10 @@
 package agh.ics.oop;
 
-import java.util.Map;
+import agh.ics.oop.gui.App;
+import javafx.application.Application;
 
+
+import static java.lang.System.exit;
 import static java.lang.System.out;
 
 public class World {
@@ -38,12 +41,9 @@ public class World {
         }
     }
     public static void main(String[] args){
-        MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new GrassField(10);
-        //IWorldMap map = new RectangularMap(5, 5);
-        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
-        IEngine engine = new SimulationEngine(directions, map, positions);
-        System.out.println(map);
-        engine.run();
+
+
+        Application.launch(App.class, args);
+
     }
 }

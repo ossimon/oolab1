@@ -6,6 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GrassFieldTest {
 
     @Test
+    public void placeTest(){
+        try{
+            GrassField map = new GrassField(10);
+            Animal animal = new Animal(map, new Vector2d(2, 2));
+            map.place(animal);
+            map.place(animal);
+        } catch (IllegalArgumentException ex) {
+            assertEquals(ex.getMessage(), "(2, 2) is not a legal place specification");
+        }
+    }
+    @Test
     public void canMoveToAndPlaceTest(){
         GrassField map = new GrassField(10);
         Animal animal = new Animal(map, new Vector2d(2, 2));

@@ -8,6 +8,7 @@ public class GrassField extends AbstractWorldMap {
 
     private final Map<Vector2d, Grass> grass = new HashMap<>();
     private final int boundary;
+    private MapBoundary mapBoundary = new MapBoundary(this);
 
     public GrassField (int amount) {
         boundary = (int) sqrt(amount * 10) + 1;
@@ -18,13 +19,19 @@ public class GrassField extends AbstractWorldMap {
                 pos = new Vector2d(rng.nextInt(boundary + 1), rng.nextInt(boundary + 1));
             } while (!this.canMoveTo(pos));
             grass.put(pos, new Grass(pos));
+            mapBoundary.add(pos);
         }
+    }
+    @Override
+    public void place(Animal animal) {
+        super.place(animal);
+        mapBoundary.add(animal.getPosition());
     }
 
     @Override
-    public Object objectAt (Vector2d position) {
+    public IMapElement objectAt (Vector2d position) {
 
-        Object object = super.objectAt(position);
+        IMapElement object = super.objectAt(position);
 
         if (object != null) {
             return object;
@@ -35,17 +42,19 @@ public class GrassField extends AbstractWorldMap {
     }
 
     @Override
-    protected Vector2d[] findBoundaries() {
-        Vector2d start = new Vector2d(0, 0);
-        Vector2d end = new Vector2d(boundary, boundary);
-        Vector2d animalPos;
+    public Vector2d[] findBoundaries() {
 
-        for (Animal animal: animals.values()) {
-            animalPos = animal.getPosition();
-            start = animalPos.lowerLeft(start);
-            end = animalPos.upperRight(end);
-        }
+        Vector2d start = mapBoundary.getLowerLeftBoundary();
+        Vector2d end = mapBoundary.getUpperRightBoundary();
 
-        return new Vector2d[]{start.subtract(new Vector2d(1, 1)), end.add(new Vector2d(1, 1))};
+        start = start.subtract(new Vector2d(1, 1));
+        end = end.add(new Vector2d(1, 1));
+
+        return new Vector2d[]{start, end};
+    }
+    @Override
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
+        super.positionChanged(oldPosition, newPosition);
+        mapBoundary.positionChanged(oldPosition, newPosition);
     }
 }

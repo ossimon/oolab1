@@ -1,5 +1,4 @@
 package agh.ics.oop;
-import java.util.*;
 
 public class RectangularMap extends AbstractWorldMap{
 
@@ -19,7 +18,7 @@ public class RectangularMap extends AbstractWorldMap{
     }
 
     @Override
-    protected Vector2d[] findBoundaries() {
+    public Vector2d[] findBoundaries() {
         return new Vector2d[]{this.leftDownBoundary, this.rightUpBoundary};
     }
 }

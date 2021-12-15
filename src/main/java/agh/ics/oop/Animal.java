@@ -3,7 +3,7 @@ package agh.ics.oop;
 import javax.management.ValueExp;
 import java.util.*;
 
-public class Animal {
+public class Animal implements IMapElement{
 
     private List<IPositionChangeObserver> observers = new ArrayList<>();
     private MapDirection orient;
@@ -15,18 +15,21 @@ public class Animal {
         pos = new Vector2d(2, 2);
     }
     public Animal(IWorldMap map){
+
         orient = MapDirection.NORTH;
         pos = new Vector2d(2, 2);
         this.map = map;
         addObserver((IPositionChangeObserver) map);
     }
     public Animal(IWorldMap map, Vector2d initialPosition){
+
         orient = MapDirection.NORTH;
         pos = initialPosition;
         this.map = map;
         addObserver((IPositionChangeObserver) map);
     }
     public String toString(){
+
         return switch (this.orient){
             case NORTH -> "^";
             case EAST -> ">";
@@ -37,14 +40,32 @@ public class Animal {
     public boolean isAt(Vector2d position){
         return position.equals(this.pos);
     }
+
+    @Override
+    public String getImageFile() {
+
+        return switch (this.orient) {
+            case NORTH -> "src/main/resources/up.png";
+            case EAST -> "src/main/resources/right.png";
+            case SOUTH -> "src/main/resources/down.png";
+            case WEST -> "src/main/resources/left.png";
+        };
+    }
+
     public Vector2d getPosition(){
         return this.pos;
     }
     public void move(MoveDirection direction){
         Vector2d newPos;
         switch(direction){
-            case LEFT -> orient = orient.previous();
-            case RIGHT -> orient = orient.next();
+            case LEFT -> {
+                orient = orient.previous();
+                positionChanged(pos, pos);
+            }
+            case RIGHT -> {
+                orient = orient.next();
+                positionChanged(pos, pos);
+            }
             case FORWARD -> {
                 newPos = pos.add(orient.toUnitVector());
                 if (map.canMoveTo(newPos)){
